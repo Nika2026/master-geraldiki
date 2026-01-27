@@ -146,7 +146,7 @@
         const text = `📜 НОВАЯ ЗАЯВКА\n\n👤 Заказчик: ${name}\n📱 Связь: ${contact}\n📝 Пожелания: ${message}`;
         
         // Исправленная строка URL
-        const url = `https://api.telegram.org{botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}`;
+        const url = `https://api.telegram.org{encodeURIComponent(text)}`;
 
         try {
             const response = await fetch(url);
@@ -164,3 +164,4 @@
 
 </body>
 </html>
+
