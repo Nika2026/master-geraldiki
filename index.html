@@ -167,19 +167,19 @@
         </form>
     </div>
 <script>
-    // Вставь свои данные внимательно (между кавычками)
-    const BOT_TOKEN = '8535720567:AAHa9y3s5_0ss1oxsP3CJ4Nxl-3W4jHNJz8'; 
-    const CHAT_ID = '1046240445';
+    const BOT_TOKEN = 'ТВОЙ_ТОКЕН_ТУТ'; 
+    const CHAT_ID = 'ТВОЙ_ID_ТУТ';
 
     document.querySelector('form').addEventListener('submit', async (e) => {
         e.preventDefault();
         
-        const inputs = e.target.querySelectorAll('input');
-        const name = inputs[0].value;    // Первое поле (Имя)
-        const contact = inputs[1].value; // Второе поле (Контакт)
-        const message = e.target.querySelector('textarea').value;
+        // --- ИСПРАВЛЕННЫЙ БЛОК СБОРА ДАННЫХ ---
+        const nameInput = document.querySelector('input[placeholder="Ваше Имя / Имя Рода"]').value;
+        const contactInput = document.querySelector('input[placeholder="Ваш Телеграм / WhatsApp"]').value;
+        const messageInput = document.querySelector('textarea').value;
+        // -------------------------------------
         
-        const text = `📜 НОВАЯ ЗАЯВКА\n\n👤 Заказчик: ${name}\n📱 Связь: ${contact}\n📝 Пожелания: ${message}`;
+        const text = `📜 НОВАЯ ЗАЯВКА\n\n👤 Заказчик: ${nameInput}\n📱 Связь: ${contactInput}\n📝 Пожелания: ${messageInput}`;
         
         const url = `https://api.telegram.org{BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(text)}`;
 
@@ -189,9 +189,11 @@
                 alert('Благодарю! Ваше послание доставлено Мастеру.');
                 e.target.reset();
             } else {
-                alert('Ошибка: проверьте TOKEN и CHAT_ID (Бот должен быть запущен!)');
+                // Это сообщение появится, если токен или ID неверны
+                alert('Ошибка сервера Telegram: Проверьте TOKEN и CHAT_ID!');
             }
         } catch (error) {
+            // Это сообщение для проблем с интернетом у пользователя
             alert('Сбой сети. Проверьте интернет-соединение.');
         }
     });
