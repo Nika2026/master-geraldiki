@@ -133,7 +133,7 @@
         </form>
     </div>
 
-<script>
+    <script>
     document.getElementById('tg-form').addEventListener('submit', async (e) => {
         e.preventDefault();
         
@@ -145,8 +145,9 @@
         const chatId = '1046240445';
         const text = `📜 НОВАЯ ЗАЯВКА\n\n👤 Заказчик: ${name}\n📱 Связь: ${contact}\n📝 Пожелания: ${message}`;
         
-        // --- ЭТА СТРОКА ИСПРАВЛЕНА И ГОТОВА ---
-        const url = `https://api.telegram.org{botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}`;
+        // Используем прокси, чтобы обойти блокировку РКН
+        const proxy = 'https://corsproxy.io?'; 
+        const url = `${proxy}https://api.telegram.org{botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}`;
 
         try {
             const response = await fetch(url);
@@ -154,15 +155,16 @@
                 alert('Благодарю! Ваше послание доставлено Мастеру.');
                 e.target.reset();
             } else {
-                alert('Ошибка: Проверьте интернет или VPN. Telegram API может быть заблокирован.');
+                alert('Сервер Telegram отклонил запрос. Проверьте токен бота.');
             }
         } catch (error) {
-            alert('Сбой сети. Попробуйте отправить с включенным VPN.');
+            alert('Сбой сети. Попробуйте отправить еще раз через минуту.');
         }
     });
 </script>
 
 </body>
 </html>
+
 
 
