@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Мастерская Геральдики | Суверенный Дизайн</title>
+    <!-- Правильное подключение шрифтов -->
+    <link href="https://fonts.googleapis.com" rel="stylesheet">
+    
+    <style>
+        body { 
+            background-image: url('background.jpg'); 
+            background-size: cover; 
+            background-attachment: fixed; 
+            background-color: #0f0f0f; 
+            color: #e0e0e0; 
+            font-family: 'Cormorant Garamond', serif; 
+            margin: 0; 
+            line-height: 1.4;
+            font-size: 1.2rem;
+        }
+
+        /* Золотые заголовки */
+        h1, h2, h3 { 
+            font-family: 'Cinzel', serif; 
+            letter-spacing: 3px;
+            color: #d4af37 !important; 
+            text-shadow: 0 0 12px rgba(212, 175, 55, 0.3);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        h1 { transition: 0.5s ease; cursor: default; }
+        h1:hover {
+            text-shadow: 0 0 25px rgba(212, 175, 55, 0.8), 0 0 40px rgba(212, 175, 55, 0.4);
+            transform: scale(1.02);
+        }
+
+        header { 
+            padding: 60px 20px; 
+            text-align: center; 
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        header p { color: #d4af37; opacity: 0.8; }
+
+        .gallery { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 40px; 
+            padding: 50px 5%; 
+        }
+
+        .card, .contact-form { 
+            border: 1px solid rgba(212, 175, 55, 0.3); 
+            padding: 30px;
+            text-align: center; 
+            transition: all 0.4s ease; 
+            background: rgba(15, 15, 45, 0.6); 
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .card:hover { 
+            border-color: #d4af37;
+            transform: translateY(-10px);
+            background: rgba(20, 20, 50, 0.8);
+        }
+
+        .card img {
+            width: 100%; 
+            height: 300px; 
+            object-fit: cover; 
+            border-bottom: 1px solid #d4af37;
+            margin-bottom: 15px;
+            filter: brightness(0.8) sepia(20%);
+            transition: 0.5s;
+        }
+        
+        .card:hover img { filter: brightness(1.1) sepia(0%); }
+
+        /* Описания в карточках теперь тоже золотые */
+        .card p { color: #d4af37; font-style: italic; opacity: 0.9; }
+        .card p small { color: #f2d479; display: block; margin-top: 5px; }
+
+        .contact-form { max-width: 600px; margin: 40px auto 80px; }
+
+        input, textarea { 
+            width: 100%; 
+            margin: 15px 0; 
+            background: rgba(0, 0, 0, 0.4); 
+            border: 1px solid rgba(212, 175, 55, 0.2); 
+            color: #fff; 
+            padding: 15px; 
+            box-sizing: border-box;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+        }
+
+        input:focus, textarea:focus { border-color: #d4af37; outline: none; }
+
+        button { 
+            background: linear-gradient(45deg, #d4af37, #f2d479, #d4af37);
+            background-size: 200% auto;
+            color: #000; 
+            padding: 18px; 
+            border: none; 
+            cursor: pointer; 
+            font-weight: bold; 
+            width: 100%; 
+            font-family: 'Cinzel', serif;
+            letter-spacing: 2px;
+            transition: 0.5s;
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        button:hover { letter-spacing: 5px; box-shadow: 0 0 20px rgba(212, 175, 55, 0.6); }
+
+        ::selection { background: #d4af37; color: #000; }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            .gallery { padding: 20px; }
+            .contact-form { width: 90%; padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>МАСТЕРСКАЯ ГЕРАЛЬДИКИ</h1>
+        <h2>Ники Алексеевой</h2>
+        <p>Создание родовых символов, печатей и знамен живого рода</p>
+    </header>
+
+    <div class="gallery">
+        <div class="card">
+            <img src="Gerb_1.png" alt="Гербы">
+            <h3>Гербы</h3>
+            <p>Цифровая живопись и вектор<br><small>Срок: от 7 дней</small></p>
+        </div>
+        <div class="card">
+            <img src="pechat2.jpg" alt="Печати">
+            <h3>Печати</h3>
+            <p>Для документов и сургуча<br><small>Ручная гравировка</small></p>
+        </div>
+        <div class="card">
+            <img src="znamya3.jpg" alt="Знамена">
+            <h3>Знамена</h3>
+            <p>Шрифтофлаги и полотна<br><small>Премиум материалы</small></p>
+        </div>
+    </div>
+
+    <div class="contact-form">
+        <h3>Оставить заявку Мастеру</h3>
+        <form>
+            <input type="text" placeholder="Ваше Имя / Имя Рода" required>
+            <input type="text" placeholder="Ваш Телеграм / WhatsApp" required>
+            <textarea rows="5" placeholder="Опишите ваши пожелания"></textarea>
+            <button type="submit">ОТПРАВИТЬ В МАСТЕРСКУЮ</button>
+        </form>
+    </div>
+<script>
+    // Вставь свои данные внимательно (между кавычками)
+    const BOT_TOKEN = '8535720567:AAHa9y3s5_0ss1oxsP3CJ4Nxl-3W4jHNJz8'; 
+    const CHAT_ID = '1046240445';
+
+    document.querySelector('form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const inputs = e.target.querySelectorAll('input');
+        const name = inputs[0].value;    // Первое поле (Имя)
+        const contact = inputs[1].value; // Второе поле (Контакт)
+        const message = e.target.querySelector('textarea').value;
+        
+        const text = `📜 НОВАЯ ЗАЯВКА\n\n👤 Заказчик: ${name}\n📱 Связь: ${contact}\n📝 Пожелания: ${message}`;
+        
+        const url = `https://api.telegram.org{BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(text)}`;
+
+        try {
+            const response = await fetch(url);
+            if (response.ok) {
+                alert('Благодарю! Ваше послание доставлено Мастеру.');
+                e.target.reset();
+            } else {
+                alert('Ошибка: проверьте TOKEN и CHAT_ID (Бот должен быть запущен!)');
+            }
+        } catch (error) {
+            alert('Сбой сети. Проверьте интернет-соединение.');
+        }
+    });
+</script>
+
+</body>
+</html>
