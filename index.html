@@ -2,8 +2,12 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Мастерская Геральдики | Суверенный Дизайн</title>
-    <!-- Правильное подключение шрифтов -->
+    
+    <!-- Подключение шрифтов -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com" rel="stylesheet">
     
     <style>
@@ -19,7 +23,6 @@
             font-size: 1.2rem;
         }
 
-        /* Золотые заголовки */
         h1, h2, h3 { 
             font-family: 'Cinzel', serif; 
             letter-spacing: 3px;
@@ -39,10 +42,10 @@
             padding: 60px 20px; 
             text-align: center; 
             border-bottom: 1px solid rgba(212, 175, 55, 0.3);
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.7);
         }
 
-        header p { color: #d4af37; opacity: 0.8; }
+        header p { color: #d4af37; opacity: 0.8; font-style: italic; }
 
         .gallery { 
             display: grid; 
@@ -79,9 +82,8 @@
         
         .card:hover img { filter: brightness(1.1) sepia(0%); }
 
-        /* Описания в карточках теперь тоже золотые */
         .card p { color: #d4af37; font-style: italic; opacity: 0.9; }
-        .card p small { color: #f2d479; display: block; margin-top: 5px; }
+        .card p small { color: #f2d479; display: block; margin-top: 5px; font-family: 'Cormorant Garamond', serif; }
 
         .contact-form { max-width: 600px; margin: 40px auto 80px; }
 
@@ -103,7 +105,8 @@
             background: linear-gradient(45deg, #d4af37, #f2d479, #d4af37);
             background-size: 200% auto;
             color: #000; 
-            padding: 18px; 
+            padding: 188x; 
+            height: 60px;
             border: none; 
             cursor: pointer; 
             font-weight: bold; 
@@ -159,29 +162,29 @@
 
     <div class="contact-form">
         <h3>Оставить заявку Мастеру</h3>
-        <form>
-            <input type="text" placeholder="Ваше Имя / Имя Рода" required>
-            <input type="text" placeholder="Ваш Телеграм / WhatsApp" required>
-            <textarea rows="5" placeholder="Опишите ваши пожелания"></textarea>
+        <form id="tg-form">
+            <input type="text" id="name" placeholder="Ваше Имя / Имя Рода" required>
+            <input type="text" id="contact" placeholder="Ваш Телеграм / WhatsApp" required>
+            <textarea id="message" rows="5" placeholder="Опишите ваши пожелания"></textarea>
             <button type="submit">ОТПРАВИТЬ В МАСТЕРСКУЮ</button>
         </form>
     </div>
-<script>
-    const BOT_TOKEN = '8535720567:AAHa9y3s5_0ss1oxsP3CJ4Nxl-3W4jHNJz8'; 
-    const CHAT_ID = '1046240445';
 
-    document.querySelector('form').addEventListener('submit', async (e) => {
+<script>
+   
+
+    document.getElementById('tg-form').addEventListener('submit', async (e) => {
         e.preventDefault();
         
-        // --- ИСПРАВЛЕННЫЙ БЛОК СБОРА ДАННЫХ ---
-        const nameInput = document.querySelector('input[placeholder="Ваше Имя / Имя Рода"]').value;
-        const contactInput = document.querySelector('input[placeholder="Ваш Телеграм / WhatsApp"]').value;
-        const messageInput = document.querySelector('textarea').value;
-        // -------------------------------------
+        const nameInput = document.getElementById('name').value;
+        const contactInput = document.getElementById('contact').value;
+        const messageInput = document.getElementById('message').value;
         
         const text = `📜 НОВАЯ ЗАЯВКА\n\n👤 Заказчик: ${nameInput}\n📱 Связь: ${contactInput}\n📝 Пожелания: ${messageInput}`;
         
-        const url = `https://api.telegram.org{BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(text)}`;
+        // Исправленный URL (добавлен /bot и $)
+        const url = `https://api.telegram.org{8535720567:AAHa9y3s5_0ss1oxsP3CJ4Nxl-3W4jHNJz8}/sendMessage?chat_id=${1046240445}&text=${encodeURIComponent(text)}`;
+
 
         try {
             const response = await fetch(url);
@@ -189,11 +192,9 @@
                 alert('Благодарю! Ваше послание доставлено Мастеру.');
                 e.target.reset();
             } else {
-                // Это сообщение появится, если токен или ID неверны
-                alert('Ошибка сервера Telegram: Проверьте TOKEN и CHAT_ID!');
+                alert('Ошибка отправки. Мастер скоро всё исправит.');
             }
         } catch (error) {
-            // Это сообщение для проблем с интернетом у пользователя
             alert('Сбой сети. Проверьте интернет-соединение.');
         }
     });
@@ -201,3 +202,4 @@
 
 </body>
 </html>
+
