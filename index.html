@@ -133,7 +133,7 @@
         </form>
     </div>
 
-    <script>
+   <script>
     document.getElementById('tg-form').addEventListener('submit', function(e) {
         e.preventDefault();
         
@@ -145,21 +145,23 @@
         var chatId = '1046240445';
         var text = '📜 НОВАЯ ЗАЯВКА\n\n👤 Заказчик: ' + name + '\n📱 Связь: ' + contact + '\n📝 Пожелания: ' + message;
         
-        // Используем супер-простой формат ссылки без сложных кавычек
+        // Формируем чистый запрос к Telegram
         var tgUrl = 'https://api.telegram.org' + botToken + '/sendMessage?chat_id=' + chatId + '&text=' + encodeURIComponent(text);
-        var finalUrl = 'https://api.codetabs.com' + encodeURIComponent(tgUrl);
+        
+        // Используем стабильный CORS-прокси
+        var proxyUrl = 'https://api.allorigins.win' + encodeURIComponent(tgUrl);
 
-        fetch(finalUrl)
+        fetch(proxyUrl)
             .then(function(response) {
                 if (response.ok) {
                     alert('Благодарю! Ваше послание доставлено Мастеру.');
                     document.getElementById('tg-form').reset();
                 } else {
-                    alert('Ошибка отправки. Попробуйте через VPN.');
+                    alert('Ошибка. Попробуйте включить VPN.');
                 }
             })
-            .catch(function(error) {
-                alert('Сеть заблокирована. Пожалуйста, включите VPN для отправки.');
+            .catch(function(err) {
+                alert('Блокировка сети. Попробуйте позже или с VPN.');
             });
     });
 </script>
@@ -167,6 +169,7 @@
 
 </body>
 </html>
+
 
 
 
