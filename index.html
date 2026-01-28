@@ -143,23 +143,26 @@
     document.getElementById('tg-form').addEventListener('submit', function(e) {
         e.preventDefault();
 
-        // 1. ПОДГОТОВКА ДАННЫХ
+        // Создаем объект для отправки
         const formData = new FormData(this);
-        // Вставь сюда свой КЛЮЧ, который пришел на почту:
+        
+        // ВАЖНО: Ключ должен быть точно таким, как в письме
         formData.append("access_key", "a8e48c35-dbb4-4144-a528-f3d7111f1f4c");
-        formData.append("subject", "Новая заявка из Мастерской Геральдики");
+        formData.append("from_name", "Мастерская Геральдики");
 
-        // 2. ОТПРАВКА
-    fetch("https://api.web3forms.com", {
+        // Отправляем строго на /submit
+        fetch("https://api.web3forms.com", {
             method: "POST",
             body: formData
         })
         .then(async (response) => {
-            if (response.status == 200) {
+            const result = await response.json();
+            if (response.ok) {
                 alert("Благодарю! Ваше послание доставлено Мастеру на почту.");
                 document.getElementById('tg-form').reset();
             } else {
-                alert("Ошибка. Попробуйте еще раз.");
+                // Выведет точную причину ошибки, если она будет
+                alert("Ошибка: " + result.message);
             }
         })
         .catch(error => {
@@ -172,6 +175,7 @@
 
 </body>
 </html>
+
 
 
 
