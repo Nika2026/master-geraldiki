@@ -1,0 +1,186 @@
+html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Курс КНИГА РОДА | Ника Алексеева</title>
+    
+    <!-- Правильное подключение шрифтов -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com" rel="stylesheet">
+    
+    <style>
+        /* Общие стили (как в сине-золотой версии) */
+        body { 
+            background-size: cover; 
+            background-attachment: fixed; 
+            font-family: 'Cormorant Garamond', serif; 
+            margin: 0; 
+            line-height: 1.4;
+            font-size: 1.2rem;
+        }
+
+        h1, h2, h3 { 
+            font-family: 'Cinzel', serif; 
+            letter-spacing: 3px;
+            text-shadow: 0 0 12px rgba(212, 175, 55, 0.3);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        header { 
+            padding: 60px 20px; 
+            text-align: center; 
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        header p { opacity: 0.8; font-style: italic; }
+
+        .gallery { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 40px; 
+            padding: 50px 5%; 
+        }
+
+        .card, .contact-form { 
+            border: 1px solid rgba(212, 175, 55, 0.3); 
+            padding: 30px;
+            text-align: center; 
+            transition: all 0.4s ease; 
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .card img {
+            width: 100%; 
+            height: 300px; 
+            object-fit: cover; 
+            border-bottom: 1px solid #d4af37;
+            margin-bottom: 15px;
+        }
+
+        .card p { font-style: italic; }
+
+        .contact-form { max-width: 600px; margin: 40px auto 80px; }
+
+        input, textarea { 
+            width: 100%; 
+            margin: 15px 0; 
+            background: rgba(0, 0, 0, 0.4); 
+            border: 1px solid rgba(212, 175, 55, 0.2); 
+            color: #fff; 
+            padding: 15px; 
+            box-sizing: border-box;
+            font-size: 1.1rem;
+        }
+
+        button { 
+            background: linear-gradient(45deg, #d4af37, #f2d479, #d4af37);
+            color: #000; 
+            padding: 18px; 
+            border: none; 
+            cursor: pointer; 
+            font-weight: bold; 
+            width: 100%; 
+            font-family: 'Cinzel', serif;
+            letter-spacing: 2px;
+            transition: 0.5s;
+        }
+
+        button:hover { letter-spacing: 5px; box-shadow: 0 0 20px rgba(212, 175, 55, 0.6); }
+
+        /* --- НОВЫЙ СТИЛЬ: ЗЕЛЕНЫЙ С ЗОЛОТОМ --- */
+        .green-gold-style {
+            background-color: #0c1a12; /* Темно-зеленый фон */
+            color: #e0e0e0;
+            background-image: url('background_green.jpg'); /* Используйте новое фоновое изображение */
+        }
+        
+        .green-gold-style header { 
+            background: rgba(12, 26, 18, 0.7); /* Прозрачность для хедера */
+        }
+        
+        .green-gold-style h1, 
+        .green-gold-style h2, 
+        .green-gold-style h3,
+        .green-gold-style header p,
+        .green-gold-style .card p { 
+            color: #d4af37 !important; /* Цвет золота для текста */
+        }
+
+        .green-gold-style .card, 
+        .green-gold-style .contact-form { 
+            background: rgba(12, 26, 18, 0.8); /* Фон карточек */
+        }
+
+    </style>
+</head>
+<body class="green-gold-style">
+
+    <header>
+        <h1>Курс КНИГА РОДА</h1>
+        <h2>от Ники Алексеевой</h2>
+        <p>Практика восстановления родовых связей и силы</p>
+    </header>
+
+    <div class="gallery">
+        <div class="card">
+            <img src="course_module_1.png" alt="Модуль 1">
+            <h3>Модуль 1: Основы</h3>
+            <p>Работа с базовыми понятиями</p>
+        </div>
+        <div class="card">
+            <img src="course_module_2.png" alt="Модуль 2">
+            <h3>Модуль 2: Практики</h3>
+            <p>Углубленные техники</p>
+        </div>
+        <div class="card">
+            <img src="course_module_3.png" alt="Модуль 3">
+            <h3>Модуль 3: Интеграция</h3>
+            <p>Применение в жизни</p>
+        </div>
+    </div>
+
+    <div class="contact-form">
+        <h3>Записаться на курс</h3>
+        <p>Получите доступ к вводному уроку сразу после заявки!</p>
+        <form id="tg-form">
+            <input type="text" id="name" name="name" placeholder="Ваше Имя / Имя Рода" required>
+            <input type="text" id="contact" name="contact" placeholder="Ваш Телеграм / WhatsApp" required>
+            <textarea id="message" name="message" rows="4" placeholder="Есть вопросы по курсу?"></textarea>
+            <button type="submit">ЗАПИСАТЬСЯ НА КУРС</button>
+        </form>
+    </div>
+
+<script>
+    // Здесь вставляем рабочий скрипт Web3Forms, который мы только что отладили
+    document.getElementById('tg-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = new FormData(this);
+        formData.append("access_key", "a8e48c35-dbb4-4144-a528-f3d7111f1f4c"); // Твой ключ
+        formData.append("subject", "📜 Новая заявка: Курс Книга Рода"); // Новая тема письма
+        
+        fetch("https://api.web3forms.com", { // Обязательно с /submit
+            method: "POST",
+            body: formData
+        })
+        .then(async (response) => {
+            const result = await response.json();
+            if (response.ok) {
+                alert("Благодарю! Ваша заявка принята.");
+                document.getElementById('tg-form').reset();
+            } else {
+                alert("Ошибка: " + result.message);
+            }
+        })
+        .catch(error => {
+            alert("Сбой сети.");
+        });
+    });
+</script>
+
+</body>
+</html>
